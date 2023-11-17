@@ -1,0 +1,45 @@
+01. temple, sky, cloud
+02. zen garden, trees, people
+03. temple, trees, sky
+04. statue, buddha, people, sky, clouds
+05. leaves, buddha, figure
+06. tea house
+07. gate, trees, people
+08. trees, water, rocks
+09. temple, roof, sky
+10. temple. people, rain
+11. statue, buddha, bushes
+12. statues, temple
+13. temple, stairs, trees, people
+14. painting, person
+15. temple, trees, clouds, sky
+16. temple, stairs, trees, sky
+17. roof, figures
+18. painting, horse, people
+19. bamboo
+20. temple, trees
+21. temple, roof, painting
+22. boxes
+23. bridge, water, trees, palace
+24. trees, clouds
+25. temple, roof, clouds
+26. temple, geisha
+27. hills, sunset, clouds, sky, houses
+28. tree, bath house, clouds
+29. house, lake, tree
+30. tea house, water, trees
+31. trees
+32. swan boat, lake, trees
+33. temple, rain
+34. temple, people, rain, umbrella
+35. temple, stone figures, trees
+36. temple, stone figures, trees
+37. temple, wood figure
+38. temple, bell
+39. temple, roof, trees
+40. wood figures, roof
+41. temple, people, trees
+42. tea house
+43. clouds, trees, palaca
+44. water, bamboo
+45. gold, palace, water, sky, clouds, trees

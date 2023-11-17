@@ -1,0 +1,14 @@
+2023-11-13 15:38:32,316 - INFO:                                             image_path image_id                                         labels
+0    /Users/carolinejohnson/Desktop/finalProject/da...       01          [Clear Sky, Water, Mountains, Rockes]
+1    /Users/carolinejohnson/Desktop/finalProject/da...       02  [Clear Sky, Water, Mountains, Rockes, Greens]
+2    /Users/carolinejohnson/Desktop/finalProject/da...       03          [Clear Sky, Water, Mountains, Rockes]
+3    /Users/carolinejohnson/Desktop/finalProject/da...       04  [Cloudy Sky, Snow, Mountains, Rockes, Greens]
+4    /Users/carolinejohnson/Desktop/finalProject/da...       05                        [Cloudy Sky, Mountains]
+..                                                 ...      ...                                            ...
+693  /Users/carolinejohnson/Desktop/finalProject/da...       45                           [rock house, person]
+694  /Users/carolinejohnson/Desktop/finalProject/da...       46                                   [roof tiles]
+695  /Users/carolinejohnson/Desktop/finalProject/da...       47                                [mosque, tiles]
+696  /Users/carolinejohnson/Desktop/finalProject/da...       48                                        [tiles]
+697  /Users/carolinejohnson/Desktop/finalProject/da...       49                                  [houses, sky]
+
+[698 rows x 3 columns]

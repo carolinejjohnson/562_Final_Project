@@ -1,0 +1,31 @@
+01. trees, beach, ocean, sky, cliffs
+02. koala, eucalypt, tree
+03. beach, ocean, sky, cliffs
+04. water, corals, sky, clouds
+05. trees, grass, eucalypt
+06. tree, grass, sky
+07. water, corals, sky, clouds
+08. tree, grass, clouds, sky
+09. beach, ocean, sky, cliffs
+10. trees, bush, kangaroo, grass
+11. bush, kangaroo, grass
+12. sky, clouds, palm trees
+13. bush, rocks
+14. sky, trees, flying fox
+15. sky, trees, flying fox
+16. grass, tree, kangaroo
+17. fern, trees
+18. beach, sky, ocean, trees
+19. bushes, rocks, ocean, sky
+20. clouds, fields, trees, mountain
+21. trees, river
+22. trees, rocks, sky
+23. tree, fields, sky
+24. beach, trees, sky, ocean
+25. building, opera house, concrete
+26. clouds, sky, building, people
+27. kangaroo, grass, trees, people
+28. clouds, sky, trees, hill, concrete
+29. tree, koala
+30. tree, koala
+

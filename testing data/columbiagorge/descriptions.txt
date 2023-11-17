@@ -1,0 +1,24 @@
+01.  pole, flag, house, grass, trees, street, sky, flowers
+03.  clear sky, building, grass, trees, street
+04.  house, bushes, clear sky, walkway
+05.  cloudy sky, house, tree, walkway, greens, fence
+06.  clear sky, house, tree, grass, bushes, pole, walkway, street
+07.  clear sky, pole, house, bushes, walkway, benches
+08.  cloudy sky, house, fence, bushes
+10.  clear sky, house, fence, bushes
+11.  cloudy sky, house, fence, bushes, flowers, umbrella
+12.  cloudy sky, house, fence, bushes, walkway, bench, trees
+13.  cloudy sky, trees, water, sailboat, poles, bushes
+14.  cloudy sky, mountains, trees, houses, water
+15.  cloudy sky, mountains, trees, bouses, boats, water
+16.  cloudy sky, bridge, water, trees
+17.  cloudy sky, bridge, water, trees
+18.  cloudy sky, grass, building, trees, water, barge
+19.  cloudy sky, grass, building, trees, water, barge
+20.  cloudy sky, grass, building, trees, water, barge
+21.  cloudy sky, bridge, water
+22.  cloudy sky, bridge, water
+23.  cloudy sky, bridge, trees, houses, supports, boats
+24.  cloudy sky, bridge, water, trees, mountains
+
+

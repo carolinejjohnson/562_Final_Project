@@ -1,0 +1,22 @@
+01. rock, sky, bushes
+02. sky, rocks, bushes, person
+03. rocks, houses, forest
+04. sky, clouds, houses, ocean
+05. sky, clouds, houses, ocean
+06. rock, sky, trees
+07. rock, sky, people
+08. rock, sky, people
+09. ocean, houses, trees, sky
+10. rock, sky, bushes, trees
+11. forest, ocean, sky
+12. boats, ocean, houses, sky
+13. ocean, rocks, trees
+14. sky, boats, houses, water
+15. boats, houses, water
+16. ocean, rocks, trees, boat
+17. church, sky, person
+18. stairs, stone walls
+19. ocean, roofs, church, boats
+20. water, forest, church, cactus
+21. mountains, ocean, houses
+22. window, church, water, forest
