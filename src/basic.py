@@ -21,13 +21,12 @@ from sklearn.metrics import accuracy_score
 from torchmetrics.classification import MultilabelAccuracy
 import matplotlib.pyplot as plt
 import logging
-
-
-
+from sklearn import metrics
+from io import StringIO
 
 
 class SimpleCNN(nn.Module):
-    def __init__(self, num_classes=10):
+    def __init__(self, num_classes=61):
         super(SimpleCNN, self).__init__()
         # model architecture here
         self.conv1 = nn.Conv2d(3, 64, kernel_size=3, stride=1, padding=1)
@@ -63,20 +62,28 @@ class CustomDataset(Dataset):
         return len(self.x_in)
 
     def __getitem__(self, idx):
-        x = self.x_in.iloc[idx]
-        #y = torch.tensor(self.y_in.iloc[idx], dtype=torch.float32)
-        y = self.y_in[idx]
+        if isinstance(self.x_in, pd.Series):
+            x = self.x_in.iloc[idx]
+        else:
+            x = self.x_in
+
+        if self.y_in is not None:
+            y = self.y_in[idx]
+        else:
+            y = torch.zeros(1, dtype=torch.float32) # need to give it tensors not None
+
         # Load and preprocess the image
-        img = Image.open(x)#.convert('RGB') 
+        img = Image.open(x)
+
         if self.transform:
             img = self.transform(img)
 
         return img, y
-
-
+def format_labels_as_string(y_row):
+    return "[{}]".format(" ".join(map(str, y_row)))
 
 def main():
-    logging.basicConfig(filename='output.log', level=logging.INFO)
+    logging.basicConfig(filename='labels.log', level=logging.INFO)
 
     # Load the CSV file into a pandas DataFrame
     df1 = pd.read_csv('data/output_file_new1.csv')
@@ -84,15 +91,16 @@ def main():
 
     X = df1['image_path']
     y = df1['labels']
-    print("[INFO] class labels:")
+    #print('y size', len(y))
+    #print("[INFO] class labels:")
     mlb = MultiLabelBinarizer()
-    y = mlb.fit_transform(y)
-    # loop over each of the possible class labels and show them
-    for (i, label) in enumerate(mlb.classes_):
-        print("{}. {}".format(i + 1, label))
-
-    print(X)
-    print(y)
+    y = mlb.fit_transform(y) # binary encoding of 61 values, 675 total images
+    for x, y_row in zip(X, y):
+        formatted_labels_string = format_labels_as_string(y_row)
+        logging.info(f"Image: {x}, Transformed Labels: {formatted_labels_string}")
+        #print(f"Image: {x}, Transformed Labels: {y_row}")
+    #print(X)
+    #print(y) #543 unique labels
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.5, random_state=42)
     #type(X_train)
@@ -103,7 +111,6 @@ def main():
         transforms.RandomAffine(degrees=5, shear=10),
         transforms.ToTensor(),
         transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
-
     ])
 
     batch_size = 64
@@ -159,6 +166,24 @@ def main():
     plt.ylabel('Accuracy')
     plt.legend()
     plt.savefig('training_accuracy_plot.png')
+    csv_string = '/Users/carolinejohnson/Desktop/562_Final_Project/testing data/barcelona/barcelona/Image01.jpg'
+
+    new_test_dataset = CustomDataset(csv_string, None, transform=transform)
+    new_test_loader = DataLoader(new_test_dataset, batch_size=1, shuffle=False, drop_last=False)
+    with torch.no_grad():
+        for inputs, _ in new_test_loader:
+            print(inputs)
+            outputs = model(inputs)
+            # Assuming your outputs are probabilities, you might want to apply a threshold
+            predictions = (outputs > 0.5).float()
+            print(predictions)
+            for i, prediction in enumerate(predictions):
+                one_hot_encoding = [index for index, value in enumerate(prediction) if value == 1]
+                print("Example %d Prediction: %s", i + 1, one_hot_encoding)
+            break
+            
+
+
 
 def run(mode, dataloader, model, optimizer=None, use_cuda = False):
     """
@@ -172,11 +197,12 @@ def run(mode, dataloader, model, optimizer=None, use_cuda = False):
 
     for inputs, labels in dataloader:
         labels = labels.float()
-        if use_cuda:
-            inputs, labels = inputs.cuda(), labels.cuda()
-
         # forward + backward + optimize
         outputs = model(inputs)
+        print("Probabilities:", outputs)
+        print("output size", outputs.size())
+        print(labels)
+        print("labels size",labels.size())
         # outputs = (outputs > 0.5).float()
         loss = criterion(outputs, labels)
         running_loss.append(loss.item())
@@ -202,24 +228,26 @@ def run(mode, dataloader, model, optimizer=None, use_cuda = False):
     acc = metric(actual_labels, predictions)
     acc = torch.mean(acc)
     acc = acc.item()
-    #print(metric)
-    #torchmetrics.functional.accuracy(labels, outputs, subset_accuracy=True)
-    #correct_predictions = (predictions == actual_labels).sum().item()
-    #total_samples = len(actual_labels)
-    #acc = correct_predictions / total_samples
+    loss = np.mean(running_loss)
+    # flat_acc = actual_labels.flatten()
+    # flat_pred = predictions.flatten()
+    # fpr, tpr, thresholds = metrics.roc_curve(flat_acc, flat_pred, pos_label=1)
+    # print(fpr, tpr, thresholds)
 
     print(mode, "Accuracy:", acc)
+    print(mode, "loss:", loss)
+    print(actual_labels.size())
+    print(predictions.size())
 
     loss = np.mean(running_loss)
     for i, (predict, ground) in enumerate(zip(actual_labels, predictions)):
         one_hot_encodings1 = [torch.nonzero(row).squeeze().tolist() for row in predict]
         one_hot_encodings2 = [torch.nonzero(row).squeeze().tolist() for row in ground]
-        logging.info("p: %s", one_hot_encodings1)
-        logging.info("a: %s", one_hot_encodings2)
+        # logging.info("p: %s", one_hot_encodings1)
+        # logging.info("a: %s", one_hot_encodings2)
         #print(f"Example {i + 1}: Predicted: {one_hot_encodings1}, Ground Truth: {one_hot_encodings2}")
 
     return loss, acc
-
 
 
 if __name__ == '__main__':
